@@ -1,18 +1,17 @@
 import { StatusBar } from 'expo-status-bar';
 import React, {useState} from 'react';
-import { Text, View, StyleSheet } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
-import { NavigationContainer } from '@react-navigation/native';
-
-import AppNavigator from './nav/AppNav';
+import { StyleSheet, Text, TextInput, View } from 'react-native';
 
 export default function App() {
-
   
   return (
-    <NavigationContainer>
-      <AppNavigator/>
-    </NavigationContainer>
+    <View style={styles.container}>
+      <Text>Gacha Page!</Text>
+        <View style={styles.footerContainer}>
+        <Button label="Add Item" />
+      </View>
+      <StatusBar style="auto" />
+    </View>
   );
 }
 
