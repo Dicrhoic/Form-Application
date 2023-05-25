@@ -1,69 +1,100 @@
-import { StyleSheet, View, Text, Platform, Pressable, ScrollView, StatusBar, SafeAreaView } from 'react-native';
+import { StyleSheet, View, Text, Platform, Pressable, ScrollView, StatusBar, SafeAreaView, TextInput } from 'react-native';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 import { Picker } from '@react-native-picker/picker';
-import { useState, useEffect } from 'react';
-import * as SQLite from 'expo-sqlite';
+import { useState, useEffect, useRef } from 'react';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import ImageSelector from './ImageSelector';
 import Selection from './Selection';
+import { Ionicons } from '@expo/vector-icons';
+import * as Sharing from 'expo-sharing';
+import { captureRef } from 'react-native-view-shot';
+import Header1 from './Fonts/Header1';
+import WebTeamCreator from './Web/WebTeamCreator';
 
 
-function openCB() {
-  console.log('open!')
-}
-function errorCB(err) {
-  console.log(err)
-}
+export default function TeamsDropDown() {
 
+  const imageRef = useRef();
 
-
-export default function TeamsDropDown({ label, theme, onPress }) {
-  const [level, setLevel] = useState('');
-  const [time, setTime] = useState('');
   const [type, setType] = useState('');
+  const [minDate, setMinDate] = useState(new Date(1598051730000));
   const [date, setDate] = useState(new Date(1598051730000));
-  const [mode, setMode] = useState('date');
-  const [show, setShow] = useState(false);
-  const [modalVisible, setModalVisible] = useState(false);
-
-  function closeModal(itemValue){
-    setType(itemValue)
-    setModalVisible(false);
-}
+  const [snapshotImg, setSnapshotImg] = useState();
+  const [time, setTime] = useState('');
 
   const onChange = (event, selectedDate) => {
     const currentDate = selectedDate;
     setDate(currentDate);
   };
 
+  function AdjustText() {
+    console.log("New time: " + time);
+  }
+
+  const onShareImageAsync = async () => {
+    try {
+      const localUri = await captureRef(imageRef, {
+        quality: 1,
+      });
+
+      console.log(localUri);
+      const fileName = localUri.split('/').pop();
+      console.log(encodeURI(fileName));
+      await Sharing.shareAsync("file://" + localUri);
+      if (localUri) {
+        alert("Saved!");
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
   useEffect(() => {
     let today = new Date();
     let date = today.getDate() + (today.getMonth() + 1) + today.getFullYear();
     setDate(today);
+    setMinDate(today);
   }, []);
 
   if (Platform.OS === "ios") {
     return (
       <SafeAreaView style={styles.container}>
-        <ScrollView>
-          <View style={styles.top}>
+        <ScrollView >
+          <View ref={imageRef}>
+            <View style={styles.top} >
+              <View style={styles.buttonContainer}>
+                <Header1 text="Battle Date"></Header1>
+                <DateTimePicker
+                  value={date}
+                  minimumDate={minDate}
+                  onChange={onChange}
 
-            <View style={styles.buttonContainer}>
-              <Text>DropDownPicker</Text>
-              <DateTimePicker
-                value={date}
-                minimumDate={date}
-                onChange={onChange}
-              />
-            
+                />
+              </View>
+              <Selection></Selection>
+              <TextInput
+                style={styles.input}
+                maxLength={8}
+                //inputMode='numeric'
+                value={time}
+                onChangeText={setTime}
+                textAlign='center'
+                onChange={AdjustText}
+              ></TextInput>
             </View>
-            <Selection></Selection>        
+            <View style={styles.mid}>
+              <ImageSelector></ImageSelector>
+            </View>
           </View>
-          <View style={styles.mid}>
-            <ImageSelector></ImageSelector>
-          </View>
-          <View>
-
+          <View style={styles.bottom}>
+            <Text>Share area</Text>
+            <Ionicons
+              name={'share-outline'}
+              color={'blue'}
+              onPress={onShareImageAsync}
+              size={32}
+              alignSelf='center'
+            ></Ionicons>
           </View>
         </ScrollView>
       </SafeAreaView>
@@ -71,26 +102,12 @@ export default function TeamsDropDown({ label, theme, onPress }) {
 
     );
   }
+  else {
+    return (
+      <WebTeamCreator></WebTeamCreator>
+    );
+  }
 
-  return (
-    <View style={styles.container}>
-      <Text>DropDownPicker</Text>
-      <Picker
-        selectedValue={type}
-        onValueChange={(itemValue, itemIndex) =>
-          setType(itemValue)
-        }>
-        <Picker.Item label="Full-Auto" value="fa" />
-        <Picker.Item label="Semi-Auto" value="sa" />
-        <Picker.Item label="Manual" value="m" />
-      </Picker>
-      <DateTimePicker
-        value={date}
-        minimumDate={date}
-        onChange={onChange}
-      ></DateTimePicker>
-    </View>
-  );
 
 
 }
@@ -98,13 +115,22 @@ export default function TeamsDropDown({ label, theme, onPress }) {
 const styles = StyleSheet.create({
   top:
   {
-    backgroundColor: 'skyblue',
-    height: 200
+    backgroundColor: '#f2f2f2',
+    height: 170,
+    width: '100%',
   },
   mid:
   {
-    backgroundColor: 'steelblue',
-    height: 5000,
+    backgroundColor: '#f2f2f2',
+    height: 1500,
+    width: '100%'
+  },
+  bottom:
+  {
+    width: '100%',
+    height: 65,
+    backgroundColor: 'orange',
+    alignSelf: 'baseline'
   },
   container: {
     flex: 1,
@@ -146,4 +172,13 @@ const styles = StyleSheet.create({
   buttonIcon: {
     paddingRight: 8,
   },
+  input: {
+    width: '50%',
+    height: 25,
+    margin: 12,
+    borderWidth: 1,
+    padding: 2,
+    alignSelf: 'center',
+  },
+
 });

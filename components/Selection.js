@@ -1,75 +1,68 @@
 import { StyleSheet, View, Text, Platform, Pressable, Alert, StatusBar, Modal } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
 import { useState, useEffect } from 'react';
+import { BlurView } from 'expo-blur';
 
-
+import TypeModal from './Modals/TypeModal';
+import ElementModal from './Modals/ElementModal';
 
 export default function Selection() {
-    const [isModalVisible, setModalVisible] = useState(true);
+    const [isModalVisible, setModalVisible] = useState(false);
     const [type, setType] = useState('');
+    const [isBlurVisisble, setBlur] = useState(true);
+    const [element, setElement] = useState('');
 
     const toggleModal = () => {
         setModalVisible(!isModalVisible);
+        setBlur(!isBlurVisisble);
     };
 
-    function StoreType(type)
-    {
+    function StoreType(type) {
         setType(type);
         setModalVisible(false);
+        setBlur(false);
+    }
+
+    function StoreElement(type) {
+        setElement(type);
+        setModalVisible(false);
+        setBlur(false);
     }
 
     return (
         <View style={styles.centeredView}>
-            <Modal
-                animationType="slide"
-                transparent={true}
-                visible={isModalVisible}
-                onBackdropPress={() => setModalVisible(false)}
-                onRequestClose={() => {
-                    Alert.alert('Modal has been closed.');
-                    setModalVisible(!isModalVisible);
-                }}>
-                <View style={styles.centeredView}>
-                    <View style={styles.modalView}>
-                        <Text style={styles.modalText}>Hello World!</Text>
-
-                        <Picker
-                    style={{ height: 10, width: '100%', alignContent: 'center', }}
-                    selectedValue={type}
-                    onValueChange={(itemValue, itemIndex) =>
-                        StoreType(itemValue)
-                    }>
-                    <Picker.Item label="Full-Auto" value="fa" />
-                    <Picker.Item label="Semi-Auto" value="sa" />
-                    <Picker.Item label="Manual" value="m" />
-                </Picker>
-                        
-                    </View>
-                </View>
-            </Modal>
-            <Pressable
-                style={[styles.button, { backgroundColor: '#fff' }]}
-                onPress={toggleModal}
-            >
-            </Pressable>
-
+            <TypeModal></TypeModal>
+            <ElementModal></ElementModal>
         </View>
 
     );
 }
 
 const styles = StyleSheet.create({
-    centeredView: {
+    blurredView:
+    {
         flex: 1,
         justifyContent: 'flex-end',
-        alignItems: 'baseline',
-        marginTop: 22,
+        alignItems: 'center',
+        backgroundColor: '#000000AA',
+    },
+    label: {
+        alignItems: 'center',
+        alignSelf: 'center',
+    },
+    centeredView: {
+        justifyContent: 'flex-end',
+        alignItems: 'center',
+        backgroundColor: '#f2f2f2',
+        height: '35%'
+
     },
     button: {
         borderRadius: 10,
-        width: '100%',
-        height: '100%',
+        width: '50%',
+        height: '35%',
         alignItems: 'center',
+        alignSelf: 'center',
         justifyContent: 'center',
         flexDirection: 'row',
     },

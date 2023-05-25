@@ -42,10 +42,25 @@ function AppNavigator() {
                   color={color}
                 />
               );
-            } else if (route.name === 'Settings') {
+            } 
+            if(route.name === 'Teams')
+            {
               return (
                 <Ionicons
-                  name={focused ? 'ios-list-box' : 'ios-list'}
+                  name={
+                    focused
+                      ? 'add-outline'
+                      : 'add-sharp'
+                  }
+                  size={size}
+                  color={color}
+                />
+              );
+            }
+            else if (route.name === 'Settings') {
+              return (
+                <Ionicons
+                  name={focused ?'settings-outline' : 'reorder-four-outline'}
                   size={size}
                   color={color}
                 />
@@ -53,7 +68,7 @@ function AppNavigator() {
             }
           },
           tabBarInactiveTintColor: 'gray',
-          tabBarActiveTintColor: 'tomato',
+          tabBarActiveTintColor: 'skyblue',
         })}
       >
         <Tab.Screen
