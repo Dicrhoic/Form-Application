@@ -3,7 +3,7 @@ import * as React from 'react';
 import { useState, useEffect } from 'react';
 import { StyleSheet, View, Text, Platform, Pressable, ScrollView } from 'react-native';
 import { Image } from 'expo-image';
-import ImagesView from '../components/ImagesView';
+
 
 export default function ImageSelector() {
   const [images, setImages] = useState('');
@@ -15,6 +15,7 @@ export default function ImageSelector() {
     let result = await ImagePicker.launchImageLibraryAsync({
       quality: 1,
       allowsMultipleSelection: true,
+      selectionLimit: 4
     });
 
     if (!result.canceled) {
@@ -38,34 +39,35 @@ export default function ImageSelector() {
 
   return (
     <View>
-        <View style={styles.buttonContainer}>
-          <Text>{loaded}</Text>
-          <Pressable
-            style={[styles.button, { backgroundColor: '#fff' }]}
-            onPress={pickImageAsync}
-          >
-          </Pressable>
-          {
-            loaded ?
-              res.assets.map((source, i) => {
-                console.log(i + ": " + source.uri);
-                return (
+      <View style={styles.buttonContainer}>
+        <Text></Text>
+        <Pressable
+          style={[styles.button, { backgroundColor: '#fff' }]}
+          onPress={pickImageAsync}
+        >
+          <Text style={styles.buttonLabel}>Add Images</Text>
+        </Pressable>
+        {
+          loaded ?
+            res.assets.map((source, i) => {
+              console.log(i + ": " + source.uri);
+              return (
 
-                  <View style={styles.imageContainer}>
-                    <Text>Image</Text>
-                    <Image
-                      id={i}
-                      style={styles.image}
-                      source={source.uri}
-                    >
-                    </Image>
-                  </View>
+                <View style={styles.imageContainer}>
+                  <Image
+                    id={"image_" + i}
+                    style={styles.image}
+                    source={source.uri}
+                    contentFit='contain'                  
+                  >
+                  </Image>
+                </View>
 
-                );
+              );
 
-              }) : <Text>No Images loaded</Text>
-          }
-        </View>
+            }) : <Text>No Images loaded</Text>
+        }
+      </View>
     </View>
 
   );
@@ -77,10 +79,11 @@ const styles = StyleSheet.create({
 
   },
   buttonContainer: {
-    width: 320,
-    height: 68,
+    width: 200,
+    height: 48,
     marginHorizontal: 20,
     alignItems: 'center',
+    alignSelf: 'center'
 
   },
   button: {
@@ -96,10 +99,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   image: {
-    width: 220,
+    width: 350,
     height: 340,
     borderRadius: 18,
-    alignSelf: 'flex-start'
+    alignSelf: 'flex-start',
+    padding: 1,
+    
   },
   button: {
     borderRadius: 10,
@@ -108,6 +113,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     flexDirection: 'row',
+  },
+  buttonLabel: {
+    color: '#6e6d6d',
+    fontSize: 16,
   },
 });
 
