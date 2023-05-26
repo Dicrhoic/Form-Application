@@ -3,15 +3,16 @@ import { Ionicons } from '@expo/vector-icons';
 import { useState, useEffect, useRef } from 'react';
 import Header1 from "../Fonts/Header1";
 import Selection from "../Selection";
+import * as Clipboard from 'expo-clipboard';
+import ImageSelector from "../ImageSelector";
 
 export default function WebTeamCreator() {
-
     const imageRef = useRef();
 
     return (
         <View style={styles.container}>
             <View ref={imageRef} style={styles.buttonContainer}>
-                <View style={styles.top} >          
+                <View style={styles.top} >
                     <Header1 text="Battle Date"></Header1>
                     <Selection></Selection>
                     <TextInput
@@ -20,8 +21,12 @@ export default function WebTeamCreator() {
                     >
                     </TextInput>
                 </View>
-                <View style={styles.mid}></View>
-                
+                <View style={styles.mid}>
+                    <ScrollView >
+                        <ImageSelector></ImageSelector>
+                    </ScrollView>
+                </View>
+
             </View>
         </View>
     );
@@ -38,7 +43,7 @@ const styles = StyleSheet.create({
     mid:
     {
         backgroundColor: 'blue',
-        flex: 1,
+        flex: 6,
         width: '100%'
     },
     bottom:

@@ -3,6 +3,7 @@ import * as React from 'react';
 import { useState, useEffect } from 'react';
 import { StyleSheet, View, Text, Platform, Pressable, ScrollView } from 'react-native';
 import { Image } from 'expo-image';
+import WebImageSelector from './Web/WebImageSelector';
 
 
 export default function ImageSelector() {
@@ -37,40 +38,49 @@ export default function ImageSelector() {
     }
   };
 
-  return (
-    <View>
-      <View style={styles.buttonContainer}>
-        <Text></Text>
-        <Pressable
-          style={[styles.button, { backgroundColor: '#fff' }]}
-          onPress={pickImageAsync}
-        >
-          <Text style={styles.buttonLabel}>Add Images</Text>
-        </Pressable>
-        {
-          loaded ?
-            res.assets.map((source, i) => {
-              console.log(i + ": " + source.uri);
-              return (
-
-                <View style={styles.imageContainer}>
-                  <Image
-                    id={"image_" + i}
-                    style={styles.image}
-                    source={source.uri}
-                    contentFit='contain'                  
-                  >
-                  </Image>
-                </View>
-
-              );
-
-            }) : <Text>No Images loaded</Text>
-        }
+  if(Platform.OS === "ios")
+  {
+    return (
+      <View>
+        <View style={styles.buttonContainer}>
+          <Text></Text>
+          <Pressable
+            style={[styles.button, { backgroundColor: '#fff' }]}
+            onPress={pickImageAsync}
+          >
+            <Text style={styles.buttonLabel}>Add Images</Text>
+          </Pressable>
+          {
+            loaded ?
+              res.assets.map((source, i) => {
+                console.log(i + ": " + source.uri);
+                return (
+  
+                  <View style={styles.imageContainer}>
+                    <Image
+                      id={"image_" + i}
+                      style={styles.image}
+                      source={source.uri}
+                      contentFit='contain'                  
+                    >
+                    </Image>
+                  </View>
+  
+                );
+  
+              }) : <Text>No Images loaded</Text>
+          }
+        </View>
       </View>
-    </View>
-
-  );
+  
+    );
+  }
+  if(Platform.OS === 'web')
+  {
+    return (
+      <WebImageSelector></WebImageSelector>
+    );
+  }
 }
 
 const styles = StyleSheet.create({
