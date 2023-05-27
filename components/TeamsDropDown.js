@@ -63,7 +63,11 @@ export default function TeamsDropDown() {
           <View ref={imageRef}>
             <View style={styles.top} >
               <View style={styles.buttonContainer}>
-                <Header1 text="Battle Date"></Header1>
+                <TextInput
+                  style={styles.input}
+                  maxLength={16}
+                  textAlign='center'
+                ></TextInput>
                 <DateTimePicker
                   value={date}
                   minimumDate={minDate}
