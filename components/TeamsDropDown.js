@@ -67,6 +67,7 @@ export default function TeamsDropDown() {
                   style={styles.input}
                   maxLength={16}
                   textAlign='center'
+                  placeholder='Enter a title'
                 ></TextInput>
                 <DateTimePicker
                   value={date}
@@ -83,6 +84,7 @@ export default function TeamsDropDown() {
                 value={time}
                 onChangeText={setTime}
                 textAlign='center'
+                placeholder='Enter time hhmmss'
                 onChange={AdjustText}
               ></TextInput>
             </View>
