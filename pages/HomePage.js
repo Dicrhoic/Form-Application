@@ -1,12 +1,12 @@
 import * as React from 'react';
 import { View, StyleSheet, Text } from 'react-native';
 import ScreenNav from '../nav/ScreenNav';
+import HomeTopNav from '../nav/HomeTopNav';
 
 function HomePage() {
   return (
     <View style={styles.container}>
-      <Text>Home!</Text>  
-      <ScreenNav></ScreenNav>
+      <HomeTopNav></HomeTopNav>
     </View>
   );
 }
@@ -18,5 +18,6 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+    
   },
 });

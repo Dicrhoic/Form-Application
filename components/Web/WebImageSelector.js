@@ -70,7 +70,7 @@ export default function WebImageSelector() {
                                         id={"image_" + i}
                                         style={styles.image}
                                         source={source.uri}
-                                        contentFit='contain'
+                         
                                     >
                                     </Image>
                                 </View>
@@ -112,11 +112,12 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     image: {
-        width: 350,
-        height: 340,
+        width: 1920,
+        height: 1080,
         borderRadius: 18,
         alignSelf: 'flex-start',
         padding: 1,
+        resizeMode: 'contain'
 
     },
     button: {
