@@ -1,4 +1,8 @@
-import { StyleSheet, View, Text, Platform, Pressable, ScrollView, StatusBar, SafeAreaView, TextInput } from 'react-native';
+import {
+  StyleSheet, View, Text, Platform, Pressable,
+  ScrollView, StatusBar, SafeAreaView, TextInput
+  , Dimensions
+} from 'react-native';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 import { Picker } from '@react-native-picker/picker';
 import { useState, useEffect, useRef } from 'react';
@@ -58,7 +62,7 @@ export default function TeamsDropDown() {
 
   if (Platform.OS === "ios") {
     return (
-      <SafeAreaView style={styles.container}>
+      <SafeAreaView>
         <ScrollView >
           <View ref={imageRef}>
             <View style={styles.top} >
@@ -73,7 +77,6 @@ export default function TeamsDropDown() {
                   value={date}
                   minimumDate={minDate}
                   onChange={onChange}
-
                 />
               </View>
               <Selection></Selection>
@@ -84,7 +87,7 @@ export default function TeamsDropDown() {
                 value={time}
                 onChangeText={setTime}
                 textAlign='center'
-                placeholder='Enter time hhmmss'
+                placeholder='Enter time hhmmss' 
                 onChange={AdjustText}
               ></TextInput>
             </View>
@@ -92,17 +95,13 @@ export default function TeamsDropDown() {
               <ImageSelector></ImageSelector>
             </View>
           </View>
-          <View style={styles.bottom}>
-            <Text>Share area</Text>
-            <Ionicons
-              name={'share-outline'}
-              color={'blue'}
-              onPress={onShareImageAsync}
-              size={32}
-              alignSelf='center'
-            ></Ionicons>
-          </View>
         </ScrollView>
+        <Ionicons
+          name={'share-outline'}
+          onPress={onShareImageAsync}
+          size={32}
+          style={{ position: 'absolute', bottom: 5, right: 0 }}
+        ></Ionicons>
       </SafeAreaView>
 
 
@@ -130,6 +129,10 @@ const styles = StyleSheet.create({
     backgroundColor: '#f2f2f2',
     height: 1500,
     width: '100%'
+  },
+  imageSec:
+  {
+    
   },
   bottom:
   {

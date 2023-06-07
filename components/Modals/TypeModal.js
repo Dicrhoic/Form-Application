@@ -1,6 +1,7 @@
-import { StyleSheet, View, Text, Alert, Modal } from 'react-native';
+import { StyleSheet, View, Text, Alert } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
 import { useState } from 'react';
+import Modal from 'react-native-modal';
 
 export default function TypeModal() {
     const [isModalVisible, setModalVisible] = useState(false);
@@ -19,28 +20,26 @@ export default function TypeModal() {
             <Modal
                 animationType={'fade'}
                 transparent={true}
-                visible={isModalVisible}
+                isVisible={isModalVisible}
                 onBackdropPress={() => setModalVisible(false)}
                 onRequestClose={() => {
                     Alert.alert('Modal has been closed.');
                     setModalVisible(!isModalVisible);
                 }}>
-                <View style={styles.blurredView}>
-                    <View style={styles.modalView}>
-                        <Text style={styles.modalText}>Set Battle Type</Text>
+                <View style={styles.modalView}>
+                    <Text style={styles.modalText}>Set Battle Type</Text>
 
-                        <Picker
-                            style={{ height: 10, width: '100%', alignContent: 'center', }}
-                            selectedValue={type}
-                            onValueChange={(itemValue, itemIndex) =>
-                                StoreType(itemValue)
-                            }>
-                            <Picker.Item label="Full-Auto" value="Full-Auto" />
-                            <Picker.Item label="Semi-Auto" value="Semi-Auto" />
-                            <Picker.Item label="Manual" value="Manual" />
-                        </Picker>
+                    <Picker
+                        style={{ height: 20, width: '100%', alignContent: 'center', }}
+                        selectedValue={type}
+                        onValueChange={(itemValue, itemIndex) =>
+                            StoreType(itemValue)
+                        }>
+                        <Picker.Item label="Full-Auto" value="Full-Auto" />
+                        <Picker.Item label="Semi-Auto" value="Semi-Auto" />
+                        <Picker.Item label="Manual" value="Manual" />
+                    </Picker>
 
-                    </View>
                 </View>
             </Modal>
             <Text style={styles.label}
