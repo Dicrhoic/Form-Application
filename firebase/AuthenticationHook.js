@@ -1,10 +1,11 @@
 import React, { useEffect } from 'react';
 import { getAuth, onAuthStateChanged, User } from 'firebase/auth';
+import { User } from 'realm';
 
 const auth = getAuth();
 
 export function useAuthentication() {
-    const [user, setUser] = useState(user);
+    const [user, setUser] = React.useState<import('firebase/auth').UserInfo>(null);
 
     useEffect(() => {
         const unsubscribeFromAuthStatuChanged = onAuthStateChanged(auth, (user) => {
