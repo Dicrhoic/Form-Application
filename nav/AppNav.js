@@ -11,6 +11,7 @@ import DrawerNav from '../components/DrawerNav';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import SideModal from '../components/Modals/SideModal';
 import SignInScreen from '../pages/SignInPage';
+import LoginIndex from '../pages/LoginIndex';
 
 const Tab = createBottomTabNavigator();
 const Drawer = createDrawerNavigator();
@@ -79,7 +80,7 @@ function AppNavigator() {
         } />
       <Tab.Screen name="Teams" component={TeamsDropDown} />
       <Tab.Screen name="Settings" component={SettingsPage} />
-      <Tab.Screen name="Account" component={SignInScreen}
+      <Tab.Screen name="Account" component={LoginIndex}
         options={
           {
             headerRight: () => (

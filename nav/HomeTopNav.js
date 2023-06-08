@@ -88,7 +88,7 @@ function HomeTopNav() {
                 setSelectedValue={setflexDirection}
             >
             </TabData>
-
+            
         </View>
 
     );
