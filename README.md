@@ -28,7 +28,7 @@ $ npx expo start --tunnel
 ```
 
 ## Basics
-###Home Screen:
+### Home Screen:
 ![alt text][hs]
 
 [hs]: https://cdn.discordapp.com/attachments/452342785215954957/1111982590874890240/6BF63E0E-320F-4974-AC86-C7B87970AC0A.png "Home Screen"
