@@ -1,19 +1,21 @@
 import { StatusBar } from 'expo-status-bar';
+import './firebase/firebase';
 import React, {useState} from 'react';
 import { StyleSheet } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import AppNavigator from './nav/AppNav';
-import fb from './firebase/firebase';
+
 
 export default function App() {
   
-  const firebase = fb;
   
   return (
+
     <NavigationContainer>
       <AppNavigator/>
       <StatusBar style='auto'/>
     </NavigationContainer>
+
   );
 }
 

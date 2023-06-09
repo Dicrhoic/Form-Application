@@ -1,4 +1,5 @@
 import * as React from 'react';
+import '../firebase/firebase';
 import { Text, View } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
@@ -12,6 +13,8 @@ import { createDrawerNavigator } from '@react-navigation/drawer';
 import SideModal from '../components/Modals/SideModal';
 import SignInScreen from '../pages/SignInPage';
 import LoginIndex from '../pages/LoginIndex';
+import AccountPage from '../pages/AccountPage';
+
 
 const Tab = createBottomTabNavigator();
 const Drawer = createDrawerNavigator();
@@ -80,7 +83,7 @@ function AppNavigator() {
         } />
       <Tab.Screen name="Teams" component={TeamsDropDown} />
       <Tab.Screen name="Settings" component={SettingsPage} />
-      <Tab.Screen name="Account" component={LoginIndex}
+      <Tab.Screen name="Account" component={AccountPage}
         options={
           {
             headerRight: () => (
