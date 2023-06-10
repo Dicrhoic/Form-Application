@@ -14,6 +14,8 @@ import SideModal from '../components/Modals/SideModal';
 import SignInScreen from '../pages/SignInPage';
 import LoginIndex from '../pages/LoginIndex';
 import AccountPage from '../pages/AccountPage';
+import AccountStackScreen from '../stacks/AccountStack';
+import TeamStackScreen from '../stacks/TeamStack';
 
 
 const Tab = createBottomTabNavigator();
@@ -81,14 +83,12 @@ function AppNavigator() {
             )
           }
         } />
-      <Tab.Screen name="Teams" component={TeamsDropDown} />
+      <Tab.Screen name="Teams" options={{headerShown: false}} component={TeamStackScreen} />
       <Tab.Screen name="Settings" component={SettingsPage} />
-      <Tab.Screen name="Account" component={AccountPage}
+      <Tab.Screen name="Account"  component={AccountStackScreen}
         options={
           {
-            headerRight: () => (
-              <SideModal></SideModal>
-            )
+            headerShown: false
           }
         }
       />

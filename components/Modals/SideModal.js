@@ -6,7 +6,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { StatusBar } from 'expo-status-bar';
 
 
-function SideModal() {
+const SideModal = ({navigation}) => {
     const [isModalVisible, setModalVisible] = useState(false);
     const [isIconVisible, setIconVisible] = useState(true);
 
@@ -33,6 +33,7 @@ function SideModal() {
             <View style={styles.centeredView}>
              
                     <Text>I am the modal content!</Text>
+                    <Button label={"Home"}></Button>
                 </View>
 
             </Modal>
