@@ -1,0 +1,29 @@
+{
+  "files": {
+    "main.js": "/Form-Application/static/js/main.69c5ea17.js",
+    "static/js/423.f261ec8f.js": "/Form-Application/static/js/423.f261ec8f.js",
+    "static/media/ShipporiMinchoB1_400Regular.ttf": "/Form-Application/static/media/ShipporiMinchoB1_400Regular.d7b081d46cf6d4371183.ttf",
+    "static/media/ShipporiMinchoB1_500Medium.ttf": "/Form-Application/static/media/ShipporiMinchoB1_500Medium.f1e1938e6a29d0057c7b.ttf",
+    "static/media/ShipporiMinchoB1_600SemiBold.ttf": "/Form-Application/static/media/ShipporiMinchoB1_600SemiBold.e3aa76516cf6cbc652f3.ttf",
+    "static/media/ShipporiMinchoB1_700Bold.ttf": "/Form-Application/static/media/ShipporiMinchoB1_700Bold.a2153934a8509b7b89b5.ttf",
+    "static/media/ShipporiMinchoB1_800ExtraBold.ttf": "/Form-Application/static/media/ShipporiMinchoB1_800ExtraBold.0bdbd75db807f6a635ea.ttf",
+    "static/media/Ionicons.ttf": "/Form-Application/static/media/Ionicons.3517aeaa34b2f8cd8eef.ttf",
+    "static/media/FontAwesome.ttf": "/Form-Application/static/media/FontAwesome.1e59d2330b4c6deb84b3.ttf",
+    "static/media/tick.png": "/Form-Application/static/media/tick.32cb45231ee117d499e2.png",
+    "static/media/arrow-up.png": "/Form-Application/static/media/arrow-up.0b0d1af9a5b464b93fde.png",
+    "static/media/close.png": "/Form-Application/static/media/close.b65df71afd6c8e422619.png",
+    "static/media/arrow-down.png": "/Form-Application/static/media/arrow-down.772a5382a31866c9198e.png",
+    "favicon.ico": "/Form-Application/favicon.ico",
+    "index.html": "/Form-Application/index.html",
+    "favicon-32.png": "/Form-Application/favicon-32.png",
+    "favicon-16.png": "/Form-Application/favicon-16.png",
+    "serve.json": "/Form-Application/serve.json",
+    "manifest.json": "/Form-Application/manifest.json",
+    "main.69c5ea17.js.map": "/Form-Application/static/js/main.69c5ea17.js.map",
+    "423.f261ec8f.js.map": "/Form-Application/static/js/423.f261ec8f.js.map"
+  },
+  "entrypoints": [
+    "static/js/423.f261ec8f.js",
+    "static/js/main.69c5ea17.js"
+  ]
+}
