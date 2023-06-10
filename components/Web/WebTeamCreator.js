@@ -1,17 +1,32 @@
 import { StyleSheet, View, Text, Platform, Pressable, ScrollView, StatusBar, SafeAreaView, TextInput } from "react-native-web";
 import { Ionicons } from '@expo/vector-icons';
+import { Dimensions } from "react-native";
 import { useState, useEffect, useRef } from 'react';
 import Header1 from "../Fonts/Header1";
 import Selection from "../Selection";
 import * as Clipboard from 'expo-clipboard';
 import ImageSelector from "../ImageSelector";
+import domtoimage from 'dom-to-image';
 
 export default function WebTeamCreator() {
     const imageRef = useRef();
-
+    const onSaveImageAsync = async () => {
+        try {         
+            const dataUrl = await domtoimage.toJpeg(imageRef.current, {
+                quality: 0.95,
+              });
+        
+              let link = document.createElement('a');
+              link.download = 'setup-image.jpeg';
+              link.href = dataUrl;
+              link.click();
+            } catch (e) {
+              console.log(e);
+            }
+    }
     return (
-        <View style={styles.container}>
-            <View ref={imageRef} style={styles.buttonContainer}>
+        <View style={styles.container} ref={imageRef}>
+            <View  style={styles.buttonContainer}>
                 <View style={styles.top} >
                     <Header1 text="Battle Date"></Header1>
                     <Selection></Selection>
@@ -28,6 +43,13 @@ export default function WebTeamCreator() {
                 </View>
 
             </View>
+            <Ionicons
+                name={'share-outline'}
+                onPress={onSaveImageAsync}
+                size={64}
+                style={{ position: 'absolute', bottom: 5, right: 0 }}
+            >                
+            </Ionicons>
         </View>
     );
 }
@@ -42,9 +64,10 @@ const styles = StyleSheet.create({
     },
     mid:
     {
-        backgroundColor: 'blue',
+        backgroundColor: '#f2f2f2',
         flex: 6,
-        width: '100%'
+        width: '100%',
+        height: '100%'
     },
     bottom:
     {
@@ -57,6 +80,7 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: '#25292e',
         alignItems: 'center',
+        height: 4000,
     },
     scroller: {
         flex: 1,

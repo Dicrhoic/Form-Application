@@ -14,10 +14,12 @@ import * as Sharing from 'expo-sharing';
 import { captureRef } from 'react-native-view-shot';
 import Header1 from './Fonts/Header1';
 import WebTeamCreator from './Web/WebTeamCreator';
+import * as MediaLibrary from 'expo-media-library';
+
 
 
 export default function TeamsDropDown() {
-
+  const [status, requestPermission] = MediaLibrary.usePermissions();
   const imageRef = useRef();
 
   const [type, setType] = useState('');
@@ -26,6 +28,10 @@ export default function TeamsDropDown() {
   const [snapshotImg, setSnapshotImg] = useState();
   const [time, setTime] = useState('');
 
+  if (status === null) {
+    requestPermission();
+  }
+  
   const onChange = (event, selectedDate) => {
     const currentDate = selectedDate;
     setDate(currentDate);

@@ -18,7 +18,7 @@ export default function Header1({ text }) {
     });
 
     if (!fontsLoaded) {
-        console.log("Can't load fonts");
+        console.log("Can't load some fonts");
     }
     return (
 

@@ -27,6 +27,7 @@
     "@react-navigation/material-top-tabs": "^6.6.2",
     "@react-navigation/native": "^6.1.6",
     "@react-navigation/native-stack": "^6.9.12",
+    "dom-to-image": "^2.6.0",
     "dotenv": "^16.0.3",
     "expo": "~48.0.15",
     "expo-app-loading": "^2.1.1",
