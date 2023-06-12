@@ -4,17 +4,21 @@ import { useState } from 'react';
 import Button from '../Button';
 import { Ionicons } from '@expo/vector-icons';
 import { StatusBar } from 'expo-status-bar';
+import { useNavigation } from '@react-navigation/native';
+import SideNode from '../SideBarNode';
 
 
-const SideModal = ({navigation}) => {
+const SideModal = ({screenName}) => {
+    const navigation = useNavigation();
     const [isModalVisible, setModalVisible] = useState(false);
     const [isIconVisible, setIconVisible] = useState(true);
-
+   
+  
     const toggleModal = () => {
         setModalVisible(!isModalVisible);
         setIconVisible(!isIconVisible);
     };
-
+  
     return (
         <View>
             <Modal
@@ -33,9 +37,9 @@ const SideModal = ({navigation}) => {
             <View style={styles.centeredView}>
              
                     <Text>I am the modal content!</Text>
-                    <Button label={"Home"}></Button>
+                    <SideNode label={"Home"} onPress={() => navigation.navigate(screenName)} />
                 </View>
-
+  
             </Modal>
             <Ionicons
                 name={'reorder-four-outline'}
@@ -46,11 +50,11 @@ const SideModal = ({navigation}) => {
             >                
             </Ionicons>
             <StatusBar/>
-
-
+  
+  
         </View>
     );
-}
+  }
 
 const styles = StyleSheet.create({
     body:
